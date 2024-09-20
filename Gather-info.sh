@@ -1,13 +1,14 @@
 #!/bin/bash
 
 # Define file names
-NEW_FILE="jenkinsjobreports"
-OLD_FILE="jenkinsfile"
+NEW_FILE="jenkins-new-report"
+OLD_FILE="jenkins-old-report"
 
-# Check if the old file exists, and delete it if present
-if [ -f "$OLD_FILE" ]; then
-    rm "$OLD_FILE"
-    echo "Old file $OLD_FILE has been deleted."
+# Check if the new report file exists
+if [ -f "$NEW_FILE" ]; then
+    # Rename the existing new report to old report
+    mv "$NEW_FILE" "$OLD_FILE"
+    echo "Existing report $NEW_FILE has been renamed to $OLD_FILE."
 fi
 
 # Create a new file to collect data
@@ -41,9 +42,6 @@ echo "==============================" >> "$NEW_FILE"
 free -h >> "$NEW_FILE"
 echo "" >> "$NEW_FILE"
 
-# Rename the current report file to jenkinsfile-old
-mv "$NEW_FILE" "$OLD_FILE"
-
 # Confirm completion
-echo "Data has been collected and saved in $OLD_FILE."
+echo "Data has been collected and saved in $NEW_FILE."
 
